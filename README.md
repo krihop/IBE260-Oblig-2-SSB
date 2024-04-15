@@ -1,4 +1,6 @@
-# Ssb
+# IBE260-Oblig-2-SSB
+
+By Kristoffer and Stine
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.2.
 

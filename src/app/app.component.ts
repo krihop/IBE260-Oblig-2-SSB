@@ -27,8 +27,9 @@ export class AppComponent {
     public region = model<string>('1506');
     public regions = [
         {label: 'Molde', value: '1506'},
-        {label: 'Kristiansund', value: '1504'},
-        {label: 'Oslo', value: '0301'},
+        {label: 'Hustadvika', value: '1579'},
+        {label: 'Aukra', value: '1547'},
+        {label: 'Gjemnes', value: '1557'},
     ]
 
     private query = computed(() => ({
@@ -47,6 +48,8 @@ export class AppComponent {
                 selection: {
                     filter: "item",
                     values: [
+                        "2020",
+                        "2021",
                         "2022",
                         "2023",
                         "2024"
