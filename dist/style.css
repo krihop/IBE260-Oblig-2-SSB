@@ -1,0 +1,115 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Light gray background */
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 40px 0; /* Increased padding for header */
+}
+
+footer {
+    background-color: #343a40; /* Dark gray footer background */
+    color: #f8f9fa; /* Light gray footer text */
+    padding: 20px 0; /* Increased padding for footer */
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    margin: 10px 0;
+    color: #343a40; /* Dark gray heading text */
+}
+
+.selection {
+    margin-bottom: 20px;
+}
+
+.checkboxes {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.checkbox {
+    margin-bottom: 5px;
+    margin-left: -20px; /* Adjust this value as needed */
+}
+
+.checkbox label {
+    display: block;
+}
+
+.checkbox input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+
+
+
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 24px; /* Increased padding for button */
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.result-table {
+    margin-top: 30px; /* Increased margin top for result table */
+    overflow-x: auto;
+}
+
+.note {
+    text-align: center;
+    font-style: italic;
+    color: #6c757d;
+    margin-top: 20px; /* Increased margin top for note */
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #dee2e6; /* Light gray table border */
+    margin-bottom: 30px; /* Increased margin bottom for table */
+}
+
+th, td {
+    padding: 12px; /* Increased padding for table cells */
+    text-align: left;
+    border-bottom: 1px solid #dee2e6; /* Light gray table border */
+}
+
+th {
+    background-color: #f8f9fa; /* Light gray table header background */
+    color: #343a40; /* Dark gray table header text */
+}
+
+tr:hover {
+    background-color: #f2f2f2; /* Light gray background on hover */
+}
+
+@media (min-width: 768px) {
+    .selection {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+}

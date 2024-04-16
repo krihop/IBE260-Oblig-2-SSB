@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSB Statistikkportal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>SSB Statistikkportal</h1>
+        <p>Utforsk og analyser norsk statistikkdata</p>
+    </header>
+
+    <main>
+        <div class="selection">
+            <h2>Velg Variabler</h2>
+            <div id="selection1" class="checkboxes">
+                <!-- Alternativer for valg av statistikkvariabler -->
+            </div>
+        </div>
+
+        <div class="selection">
+            <h2>Velg År</h2>
+            <div id="selection2" class="checkboxes">
+                <!-- Alternativer for valg av år -->
+            </div>
+        </div>
+
+        <div class="selection">
+            <h2>Velg Region</h2>
+            <div id="selection3" class="checkboxes">
+                <!-- Alternativer for valg av regioner -->
+            </div>
+        </div>
+
+        <button id="check_variables">Hent Data</button>
+
+        <div class="result-table">
+            <div id="SSB_table">
+                <!-- Statistikkdata-tabell vil bli vist her -->
+            </div>
+            <div id="Math_table">
+                <!-- Matematiske beregningerstabell vil bli vist her -->
+            </div>
+        </div>
+
+        <p class="note">Merk: Hvis mer enn én statistikkvariabel er valgt, vil ikke matematiske beregninger utføres.</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 SSB Statistikkportal. Alle rettigheter reservert.</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
