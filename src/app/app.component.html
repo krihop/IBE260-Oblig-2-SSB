@@ -1,34 +1,55 @@
-<main class="main">
-    <div class="content">
-        <h1>Welcome to {{ title }}</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSB Statistikkportal</title>
+    <link rel="stylesheet" href="app.component.scss">
+</head>
+<body>
+    <header>
+        <h1>SSB Statistikkportal</h1>
+        <p>Utforske og analysere norske statistikkdata</p>
+    </header>
 
-        <mat-form-field>
-            <mat-label>Region</mat-label>
-            <mat-select [(ngModel)]="region">
-                @for (region of regions; track region) {
-                    <mat-option [value]="region.value">{{ region.label }}</mat-option>
-                }
-            </mat-select>
-        </mat-form-field>
+    <main>
+        <div class="selection">
+            <h2>Velg statistikkvariabel</h2>
+            <div class="checkbox-container" id="selection1">
+                <!-- Options for selecting statistics variables -->
+            </div>
+        </div>
+    
+        <div class="selection">
+            <h2>Velg år</h2>
+            <div class="checkbox-container" id="selection2">
+                <!-- Options for selecting years -->
+            </div>
+        </div>
+    
+        <div class="selection">
+            <h2>Velg region</h2>
+            <div class="checkbox-container" id="selection3">
+                <!-- Options for selecting regions -->
+            </div>
+            <button id="check_variables">Hent data</button> <!-- Move the button here -->
+        </div>
+    
+        <div class="result-table">
+            <div class="table-container" id="SSB_table">
+                <!-- Statistics data table will be displayed here -->
+            </div>
+            <div class="table-container" id="Math_table">
+                <!-- Mathematical calculations table will be displayed here -->
+            </div>
+        </div>
+    
+        <p class="note">Merk: Hvis mer enn én statistikkvariabel er valgt, utføres ikke matematiske beregninger.</p>
+    </main>      
 
-        <table>
-            <thead>
-                @for (column of columns(); track column) {
-                    <th>{{ column }}</th>
-                }
-            </thead>
-            <tbody>
-                @for (row of rows(); track row) {
-                    <tr>
-                        @for (item of row; track item) {
-                            <td>{{ item }}</td>
-                        }
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</main>
+    <footer>
+        <p>&copy; 2024 Statistisk sentralbyrå.</p>
+    </footer>
 
-
-<router-outlet/>
+</body>
+</html>

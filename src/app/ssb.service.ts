@@ -1,106 +1,56 @@
-import { inject, Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import express, { Express, NextFunction, Request, Response } from 'express';
+import path from 'path';
+const JSONstat = require("jsonstat-toolkit");
 
-export interface SsbQuery {
-    query: SsbQueryItem[];
-    response: {
-        format: string;
-    };
-}
+// Constants
+const SSB_API_URL = 'https://data.ssb.no/api/v0/no/table/11342';
+const port: number = 3000;
 
-export interface SsbQueryItem {
-    code: string;
-    selection: {
-        filter: string;
-        values: string[];
-    };
-}
+// Express app setup
+const app: Express = express();
+app.use(express.json());
+app.use(express.static(path.join(__dirname)));
 
-export interface SsbApiResponse {
-    version: string;
-    class: string;
-    label: string;
-    source: string;
-    updated: string;
-    note: string[];
-    role: {
-        time: string[];
-        geo: string[];
-        metric: string[];
-    };
-    id: string[];
-    size: number[];
-    dimension: {
-        Region: {
-            label: string;
-            category: {
-                index: { [key: string]: number };
-                label: { [key: string]: string };
-            };
-            extension: {
-                elimination: boolean;
-                show: string;
-            };
-            link: {
-                describedby: { extension: { Region: string } }[];
-            };
-        };
-        ContentsCode: {
-            label: string;
-            category: {
-                index: { [key: string]: number };
-                label: { [key: string]: string };
-                unit: { [key: string]: { base: string; decimals: number } };
-            };
-            extension: {
-                elimination: boolean;
-                refperiod: { [key: string]: string };
-                show: string;
-            };
-        };
-        Tid: {
-            label: string;
-            category: {
-                index: { [key: string]: number };
-                label: { [key: string]: string };
-            };
-            extension: {
-                elimination: boolean;
-                show: string;
-            };
-        };
-    };
-    extension: {
-        px: {
-            infofile: string;
-            tableid: string;
-            decimals: number;
-            "official-statistics": boolean;
-            aggregallowed: boolean;
-            language: string;
-            matrix: string;
-            "subject-code": string;
-        };
-        contact: {
-            name: string;
-            phone: string;
-            mail: string;
-            raw: string;
-        }[];
-    };
-    value: number[];
-}
+// Middleware for CORS
+app.use(function(inRequest: Request, inResponse: Response, inNext: NextFunction) {
+    inResponse.header('Access-Control-Allow-Origin', '*');
+    inResponse.header('Access-Control-Allow-Methods', 'GET,POST');
+    inResponse.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    inNext();
+});
 
-@Injectable({
-    providedIn: 'root'
-})
-export class SsbService {
-    private http = inject(HttpClient);
-    private apiUrl = 'https://data.ssb.no/api/v0';
+// Start server
+app.listen(port, () => {
+    console.log(`Server started, listening on port ${port}.`);
+});
 
-    getTable(table: number, body: SsbQuery): Observable<SsbApiResponse> {
-        const url = `${this.apiUrl}/no/table/${table}`;
-        return this.http.post<SsbApiResponse>(url, body);
+// API endpoint for fetching SSB data
+app.post('/get-ssb-data', async (req: Request, res: Response) => {
+    console.log('Received a POST request');
+
+    const query = JSON.stringify(req.body);
+    console.log('Query:', query);
+
+    try {
+        const response = await JSONstat(SSB_API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: query
+        });
+
+        const dataset = response;
+        const jsonStatData = JSONstat(response);
+        const tableData = jsonStatData.Dataset(0).toTable();
+
+        if (dataset && tableData) {
+            return res.status(200).json({ message: 'Data retrieval successful', dataset, table: tableData });
+        } else {
+            return res.status(400).json({ message: 'Error retrieving data' });
+        }
+    } catch (error) {
+        console.error('Internal Server Error:', error);
+        return res.status(500).json({ message: 'Internal Server Error' });
     }
-}
+});

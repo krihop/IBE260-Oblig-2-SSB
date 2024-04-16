@@ -1,4 +1,122 @@
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
 
+header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer {
+    background-color: #f3f3f3;
+    padding: 10px 20px; /* Add padding for spacing */
+    display: flex; /* Use flexbox */
+    justify-content: space-between; /* Align content to the ends */
+    align-items: center; /* Center vertically */
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.selection {
+    margin-top: 10px; /* Adjust margin-top to move the selection section up */
+    width: 100%; /* Make selections full width */
+}
+
+
+.selection h2 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.checkbox-container {
+    margin-bottom: 15px;
+}
+
+.checkbox-container label {
+    display: block;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.result-table {
+    width: 100%;
+    max-width: 800px; /* Adjust the maximum width as needed */
+    margin: 20px auto 0; /* Center the table horizontally and remove top margin */
+    overflow-x: auto; /* Add horizontal scroll if needed */
+    display: flex;
+    justify-content: center; /* Center the table horizontally */
+}
+
+
+.table-container {
+    width: 100%;
+    max-width: 100%; /* Adjust the maximum width as needed */
+}
+
+.note {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+    margin-top: 20px;
+}
+
+button {
+    margin-top: 20px;
+    margin-left: 10px; /* Adjust left margin to align with selections */
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Table Styles */
 table {
-    border-spacing: 4rem 0.5rem;
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #ddd; /* Add border to the table */
+}
+
+th, td {
+    padding: 12px; /* Increase padding for better spacing */
+    border-bottom: 1px solid #ddd; /* Add border-bottom to each row */
+    border-top: 1px solid #ddd; /* Add border-top to each row */
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #333;
+    border-top: 2px solid #ddd; /* Add thicker border to top of header row */
+    border-bottom: 2px solid #ddd; /* Add thicker border to bottom of header row */
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+td:last-child {
+    border-right: none; /* Remove right border from the last cell in each row */
 }
